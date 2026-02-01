@@ -51,9 +51,9 @@
 &i2c0 {
     status = "okay";
 
-    oled: ssd1306@3d {
+    oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
-        reg = <0x3d>;
+        reg = <0x3c>;
         width = <128>;
         height = <32>;   /* đổi 64 nếu dùng màn 128x64 */
     };
