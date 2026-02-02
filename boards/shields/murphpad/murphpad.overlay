@@ -1,61 +1,37 @@
-THIS_IS_A_TEST_ERROR;
 / {
-    chosen {
-        zmk,kscan = &kscan0;
-    };
-
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-
-        /* 6 hàng */
-        row-gpios = <
-            &gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R0 */
-            &gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R1 */
-            &gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R2 */
-            &gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R3 */
-            &gpio0 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R4 */
-            &gpio1 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)  /* R5 */
-        >;
-
-        /* 5 cột */
-        col-gpios = <
-            &gpio0 29 (GPIO_ACTIVE_LOW) /* C0 */
-            &gpio0 31 (GPIO_ACTIVE_LOW) /* C1 */
-            &gpio0 2  (GPIO_ACTIVE_LOW) /* C2 */
-            &gpio1 0  (GPIO_ACTIVE_LOW) /* C3 */
-            &gpio1 6  (GPIO_ACTIVE_LOW) /* C4 */
-        >;
-
-        diode-direction = "col2row";
-    };
-
-    /* Encoder trái */
+    /* Encoder bên trái */
     middle_left_encoder: encoder_left {
         compatible = "alps,ec11";
-        a-gpios = <&gpio0 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* D1 */
-        b-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* D2 */
+        a-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;   /* P0.06 = D1 */
+        b-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* P0.17 = D2 */
         steps = <4>;
         status = "okay";
     };
 
-    /* Encoder phải */
+    /* Encoder bên phải */
     top_right_encoder: encoder_right {
         compatible = "alps,ec11";
-        a-gpios = <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* D3 */
-        b-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* D4 */
+        a-gpios = <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* P0.20 = D3 */
+        b-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* P0.22 = D4 */
         steps = <4>;
         status = "okay";
     };
 };
 
-/* OLED SSD1306 dùng I2C0: SDA=P0.08, SCL=P0.11 */
+/* Bật I2C0 cho OLED SSD1306 */
 &i2c0 {
     status = "okay";
 
-    oled: ssd1306@3d {
+    oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
-        reg = <0x3d>;
+        reg = <0x3c>;
         width = <128>;
-        height = <32>;   /* đổi 64 nếu dùng màn 128x64 */
+        height = <32>;      /* nếu màn 0.91" thường là 128x32, 
+                               nếu màn cao hơn thì đổi thành 64 */
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        prechargep = <0x22>;
     };
 };
