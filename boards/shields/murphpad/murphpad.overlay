@@ -1,4 +1,7 @@
 THIS_IS_A_TEST_ERROR;
+/chosen {
+    zephyr,display = &THIS_NODE_DOES_NOT_EXIST;
+};
 / {
     chosen {
         zmk,kscan = &kscan0;
