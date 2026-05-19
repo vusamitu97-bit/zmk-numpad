@@ -60,7 +60,7 @@
 
                             &bt BT_CLR   &rgb_ug RGB_TOG &rgb_ug RGB_EFF
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
 
         };
 
