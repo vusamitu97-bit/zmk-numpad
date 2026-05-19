@@ -67,7 +67,7 @@
         fn_layer {
             display-name = "fn";
             bindings = <
-                            &out OUT_TOG     &bt BT_PRV       &bt BT_NXT       &trans
+                            &out OUT_TOG     &bt BT_PRV       &bt BT_NXT       &studio_unlock
                             &trans           &trans           &trans           &trans
                             &rgb_ug RGB_HUD  &rgb_ug RGB_SPI  &rgb_ug RGB_HUI  &trans
                 &bt BT_CLR  &rgb_ug RGB_EFR  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans
